@@ -94,7 +94,10 @@ RUN set -ex; \
 		mkdir "wp-content/$dir"; \
 	done; \
 	chown -R www-data:www-data wp-content; \
-	chmod -R 777 wp-content
+	chmod -R 777 wp-content; \
+#Install wp-cli
+        curl -o /usr/local/bin/wp -fSL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
+        chmod +x /usr/local/bin/wp
 
 #Install nginx upgrade all packages
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install nginx -y && apt-get clean \
